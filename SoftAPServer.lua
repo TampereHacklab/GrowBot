@@ -1,17 +1,8 @@
 
-led1 = 3
-led2 = 4
-gpio.mode(led1, gpio.OUTPUT)
-gpio.mode(led2, gpio.OUTPUT)
-gpio.write(led1, gpio.LOW)
-gpio.write(led2, gpio.LOW)
 
-if wifi.getmode() == wifi.STATION then
-    ip, nm, gw=wifi.sta.getip()
-else
-    ip, nm, gw = wifi.ap.getip()
-end
+wifi.setmode(wifi.SOFTAP)
 
+ip, nm, gw=wifi.sta.getip()
 print("We have IP address "..ip)
 srv=net.createServer(net.TCP)
 print("Started listening port 80")

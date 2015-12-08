@@ -10,11 +10,16 @@ tmr.alarm(0,1000,1,function()
         countdown = nil
         local s,err
         
-        if file.open("ConnectWifi.lua") then
-            file.close()
-            s,err = pcall(function() dofile("ConnectWiFi.lua") end)
-        end
-
+		if file.open("WifiData.txt") then
+			if file.open("ConnectWifi.lua") then
+				file.close()
+				s,err = pcall(function() dofile("ConnectWiFi.lua") end)
+			end
+		elseif file.open("SoftAPWifi.lua") then
+			file.close()
+			s, err = pcall(function() dofile("SoftAPWifi.lua") end)
+		end
+		
         if file.open("main.lua") then
             file.close()
             s,err = pcall(function() dofile("main.lua") end)
